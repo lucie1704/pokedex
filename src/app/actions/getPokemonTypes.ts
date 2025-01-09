@@ -6,7 +6,7 @@ export async function getTypes(id: string): Promise<PokemonType | null> {
     const response = await fetch(baseUrl + "/types/" + id);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch types ${id}: ${response.statusText}`);
+      throw new Error("Failed to fetch types");
     }
 
     const data = await response.json();
