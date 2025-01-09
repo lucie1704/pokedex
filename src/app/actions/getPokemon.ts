@@ -1,10 +1,20 @@
+import { baseUrl } from "../global";
 import { PokemonType } from "../Types/Pokemon";
 
-const baseUrl = "https://nestjs-pokedex-api.vercel.app";
+export async function getPokemon(id: string): Promise<PokemonType | null> {
+  try {
+    const response = await fetch(baseUrl + "/pokemons/" + id);
 
-export async function getPokemon(id: string): Promise<PokemonType> {
-  const response = await fetch(baseUrl + "/pokemons/" + id);
-  const data = response.json();
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch Pokémon with ID ${id}: ${response.statusText}`
+      );
+    }
 
-  return data;
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching Pokémon:", error);
+    return null;
+  }
 }

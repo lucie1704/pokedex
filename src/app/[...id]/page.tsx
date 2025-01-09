@@ -20,7 +20,10 @@ export default function Pokemon() {
         const data = Array.isArray(id)
           ? await getPokemon(id[0])
           : await getPokemon(id);
-        setPokemon(data);
+
+        if (data) {
+          setPokemon(data);
+        }
       } catch (error) {
         console.error("Error fetching Pokémon:", error);
       }

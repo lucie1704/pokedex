@@ -1,6 +1,5 @@
+import { baseUrl } from "../global";
 import { PokemonType } from "../Types/Pokemon";
-
-const baseUrl = "https://nestjs-pokedex-api.vercel.app";
 
 type searchParams = {
   query?: string;
